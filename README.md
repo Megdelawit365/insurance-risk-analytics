@@ -1,16 +1,8 @@
 # End-to-End Insurance Risk Analytics & Predictive Modeling  
 
----
-
 ## Project Overview  
 
-### Task 1  
-
-### Task 2
-
-### Task 3  
-
-### Task 4  
+This project analyzes historical car insurance data from AlphaCare Insurance Solutions (ACIS) to uncover risk patterns, evaluate portfolio profitability, and support data-driven pricing decisions.
 
 ---
 
@@ -79,4 +71,48 @@ pip install -r requirements.txt
 
 ---
 
+
+## Data Version Control (DVC)
+
+This project uses DVC to manage large datasets separately from Git.
+
+### Initialize DVC
+
+```bash
+dvc init
+```
+
+### Configure Local Storage
+
+```bash
+dvc remote add -d localstorage C:\dvc-storage
+```
+
+### Track Data
+
+```bash
+dvc add data/MachineLearningRating_v3.txt
+```
+
+### Push Data to Remote Storage
+
+```bash
+dvc push
+```
+
+### Reproduce Data
+
+After cloning the repository:
+
+```bash
+dvc pull
+```
+
 ## Tools and Technologies Used
+pytest
+flake8
+dvc
+numpy
+pandas
+matplotlib
+seaborn
