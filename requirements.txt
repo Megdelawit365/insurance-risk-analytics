@@ -1,0 +1,7 @@
+pytest
+flake8
+dvc
+numpy
+pandas
+matplotlib
+seaborn
