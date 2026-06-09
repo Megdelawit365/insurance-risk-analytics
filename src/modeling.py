@@ -16,12 +16,29 @@ def split_data(df, target, test_size=0.2):
     return train_test_split(X, y, test_size=test_size, random_state=42)
 
 
+def clean_data(df):
+    df = df.copy()
+
+    for col in df.columns:
+        if df[col].dtype == "object":
+            df[col] = df[col].astype(str)
+            df[col] = df[col].replace("nan", np.nan)
+
+    return df
+
+
 def build_preprocessor(X):
-    cat = X.select_dtypes(include=["object"]).columns
-    num = X.select_dtypes(exclude=["object"]).columns
+    X = X.copy()
+
+    cat_cols = X.select_dtypes(include=["object", "category"]).columns
+    num_cols = X.select_dtypes(exclude=["object", "category"]).columns
+
+    for col in cat_cols:
+        X[col] = X[col].astype(str)
+
     return ColumnTransformer([
-        ("cat", OneHotEncoder(handle_unknown="ignore"), cat),
-        ("num", "passthrough", num)
+        ("cat", OneHotEncoder(handle_unknown="ignore"), cat_cols),
+        ("num", "passthrough", num_cols)
     ])
 
 
